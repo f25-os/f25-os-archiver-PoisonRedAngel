@@ -3,7 +3,7 @@
 
 #set -x  #uncomment for execution logging - try it
 
-TARPGM=tar
+TARPGM=./mytar.py
 
 rm -rf dst # clean up from previous runs
 mkdir dst # make destination directory for extraction of tar file

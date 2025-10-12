@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+
+
 import os
 
 class BufferedWriter:
@@ -22,7 +25,9 @@ class BufferedWriter:
 
     def close(self):
         self.flush()
-        os.close(self.fd)
+        # Only close the file descriptor if it's not a standard one (0, 1, or 2).
+        if self.fd > 2:
+            os.close(self.fd)
 
 class BufferedReader:
     def __init__(self, fd, buffer_size=4096):

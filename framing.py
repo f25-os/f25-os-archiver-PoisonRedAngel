@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+
+
 import os
 from buffers import BufferedWriter, BufferedReader
 
@@ -9,7 +12,8 @@ class FramedWriter:
     #Finds a file's size, creates a header, and writes the header and data
     def write_file(self, filename_to_add):
 
-        print(f"Archiving: {filename_to_add}")
+        os.write(2, f"Archiving: {filename_to_add}\n".encode())
+
         fd = os.open(filename_to_add, os.O_RDONLY)# Open the input file for reading
 
         file_size = os.lseek(fd, 0, os.SEEK_END)# this sets the file offset to the end of the file and returns the file size
@@ -68,8 +72,7 @@ class FramedReader:
         # 4. Convert the 8 bytes for the length back into an integer.
         data_length = int.from_bytes(length_bytes, 'big')
 
-        print(f"Extracting: {filename} ({data_length} bytes)")
-
+        os.write(2, f"Extracting: {filename} ({data_length} bytes)\n".encode())
         # --- Read the Data and Write to New File ---
         # Create and open the new file for writing.
         output_fd = os.open(filename, os.O_WRONLY | os.O_CREAT | os.O_TRUNC)
