@@ -7,7 +7,7 @@ from buffers import BufferedWriter, BufferedReader
 class FramedWriter:
     def __init__(self):
         # Create an instance of our BufferedWriter to handle efficient writing.
-        self.writer = BufferedWriter(1)#self is the instance of the class FramedWriter and output_fd is the descriptor of the file to write to 
+        self.writer = BufferedWriter(1)#self is the instance of the class FramedWriter
 
     #Finds a file's size, creates a header, and writes the header and data
     def write_file(self, filename_to_add):
